@@ -317,6 +317,11 @@
 		<groupId>fr.ign.cogit</groupId>
 		<version>1.9-SNAPSHOT</version>
 		</dependency>
+	<dependency>
+			<groupId>fr.ign.cogit</groupId>
+			<artifactId>simplu3d</artifactId>
+			<version>${simplu3d.version}</version>
+	</dependency>
 	</dependencies>
 	<distributionManagement>
 		<repository>
