@@ -23,8 +23,7 @@ public class CreatePoint {
 
 	public static void main(String[] args) throws CloneNotSupportedException {
 
-		String nomAttributAzimuth = "azimut";
-		int shift = 250;
+		int shift = 350;
 
 		// On lit les entités du shapefile
 		IFeatureCollection<IFeature> featColl = ShapefileReader
@@ -41,7 +40,6 @@ public class CreatePoint {
 
 		IFeatureCollection<IFeature> featCollObb = new FT_FeatureCollection<IFeature>();
 
-		int count = 0;
 		// Pour chaque entité
 		for (IFeature feat : featColl) {
 			// On récupère la géométrie
@@ -53,8 +51,7 @@ public class CreatePoint {
 				continue;
 			}
 
-			// On transforme le type
-			count++;
+		
 
 
 			IMultiCurve<ILineString> curve = (IMultiCurve<ILineString>) geom;
@@ -99,6 +96,10 @@ public class CreatePoint {
 			// --------------Traiter le point du haut
 			IFeature featOutTop = feat.cloneGeom();
 			Vecteur v = getVecteur(oBB);
+			if(v.getX() < 0 ) {
+				v= v.multConstante(-1);
+			}
+			
 			double offsetXTop = -shift * v.getY();
 			double offsetYTop = shift * v.getX();
 			IDirectPosition dpTop = (IDirectPosition) dp.clone();
